@@ -7,7 +7,7 @@ const moviesController = {
 
     show:(req,res)=>{
         const query = req.query;
-        
+
         //filter for title
         if(query.name){
             db.Pelicula.findAll({
@@ -133,6 +133,14 @@ const moviesController = {
             genero_idgenero: req.body.genero_idgenero,
             img: req.file.filename,
         });
+        return res.json({
+            meta :{
+                status:200,
+                url:'api/movies/'
+            },
+            data:"Pelicula creada con exito"
+            
+        });
         },
 
     edit: function(req,res){
@@ -145,6 +153,14 @@ const moviesController = {
                 idpelicula: req.params.id
             },
         });
+        return res.json({
+            meta :{
+                status:200,
+                url:'api/movies/:id'
+            },
+            data:"Pelicula editada con exito"
+            
+        });
     },
 
     delete:(req,res)=>{
@@ -152,6 +168,14 @@ const moviesController = {
             where:{
                 idpelicula: req.params.id
             }
+        });
+        return res.json({
+            meta :{
+                status:200,
+                url:'api/movies/:id'
+            },
+            data:"Pelicula eliminada con exito"
+            
         });
         
     },

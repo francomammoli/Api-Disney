@@ -36,8 +36,8 @@ const characterController = {
         } else if(query.age){
             db.Personaje.findAll({
                 where:{
-                nombre: {
-                    [Op.like]: '%' + req.query.age + '%'
+                edad: {
+                    [Op.like]:  req.query.age 
                 }
                 },
             }).then((personaje)=>{
@@ -49,7 +49,7 @@ const characterController = {
                     },
                     data: {
                         msg:'search results',
-                        personaje: personaje
+                        personaje
                     }
                 }
                 res.json({respuestaShow});
@@ -88,7 +88,7 @@ const characterController = {
             res.json(respuestaShowD);
         });
         },
-        
+
     create:(req,res)=>{
     console.log(req.body);
     const resultvalidation = validationResult(req);
@@ -100,6 +100,14 @@ const characterController = {
         nombre: req.body.nombre,
         edad: req.body.edad,
         historia: req.body.historia,
+    });
+    return res.json({
+        meta :{
+            status:200,
+            url:'api/characters/'
+        },
+        data:"Personaje creado con exito"
+        
     });
     },
 
@@ -114,7 +122,14 @@ const characterController = {
                 idpersonaje: req.params.id
             },
         });
-    
+        return res.json({
+            meta :{
+                status:200,
+                url:'api/characters/:id'
+            },
+            data:"Personaje editado con exito"
+            
+        });
     },
 
     delete:(req,res)=>{
@@ -122,6 +137,14 @@ const characterController = {
             where:{
                 idpersonaje: req.params.id
             }
+            });
+            return res.json({
+                meta :{
+                    status:200,
+                    url:'api/characters/:id'
+                },
+                data:"Personaje eliminado con exito"
+                
             });
     },
 }

@@ -27,10 +27,10 @@ router.get('/',personajeController.show);
 router.get('/:id',personajeController.detail);
 
 //crear 
-router.post('/',uploadFile.single('imagenes'),personajeController.create);
+router.post('/',uploadFile.single('img'),personajeController.create);
 
 //edit
-router.post('/:id',uploadFile.single('imagenes'),personajeController.edit);
+router.post('/:id',uploadFile.single('img'),personajeController.edit);
 
 //delete
 router.delete('/:id',personajeController.delete);

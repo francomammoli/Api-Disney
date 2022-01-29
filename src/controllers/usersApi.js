@@ -65,7 +65,7 @@ const usersController = {
                 if(error){
                     res.sendStatus(403);
                 } else if (req.body.password == userToLogin.pasword){   
-                        return res.json({data: "Usuario ingresado"});
+                        return res.json({data: "Usuario ingresado con exito"});
                 }
                 return res.json({data: "credenciales invalidas"});
             });
